@@ -46,6 +46,112 @@ if err != nil {
 - Variadic functions
 - 6 practice questions
 
+#### Lesson 3: Structs and Methods (`3.structs.md`)
+```go
+type User struct {
+    ID       int    `json:"id"`
+    Name     string `json:"name"`
+    Email    string `json:"email"`
+    IsActive bool   `json:"is_active"`
+}
+
+// Method with pointer receiver
+func (u *User) UpdateEmail(newEmail string) error {
+    if !strings.Contains(newEmail, "@") {
+        return fmt.Errorf("invalid email format")
+    }
+    u.Email = newEmail
+    return nil
+}
+```
+- Structs as Go's "classes"
+- Value vs pointer receivers
+- Struct embedding (composition)
+- JSON marshaling/unmarshaling
+- Constructor patterns
+- 8 practice questions
+
+#### Lesson 4: Interfaces (`4.interfaces.md`)
+```go
+// Interface definition
+type UserRepository interface {
+    GetUser(id int) (*User, error)
+    SaveUser(user *User) error
+}
+
+// Dependency injection pattern
+type UserService struct {
+    userRepo UserRepository
+}
+
+func NewUserService(repo UserRepository) *UserService {
+    return &UserService{userRepo: repo}
+}
+```
+- Duck typing and implicit implementation
+- Interface composition
+- Dependency injection patterns
+- Custom error types
+- Empty interface and type assertions
+- 8 practice questions
+
+#### Lesson 5: Goroutines and Channels (`5.goroutines.md`)
+```go
+// Worker pool pattern
+func worker(jobs <-chan Job, results chan<- string) {
+    for job := range jobs {
+        // Process job
+        results <- processJob(job)
+    }
+}
+
+// Context for cancellation
+func doWork(ctx context.Context) error {
+    select {
+    case <-ctx.Done():
+        return ctx.Err()
+    default:
+        // Do work
+    }
+    return nil
+}
+```
+- Goroutines vs async/await
+- Channels for communication
+- Select statement for multiplexing
+- Context for cancellation/timeouts
+- Worker pools and pipelines
+- sync.WaitGroup and Mutex
+- 10 practice questions
+
+#### Lesson 6: Pointers and Memory (`6.pointers.md`)
+```go
+// Pointer basics
+func modifyValue(val *int) {
+    *val = 42
+}
+
+// Memory management
+func createUser() *User {
+    user := &User{Name: "Alice"} // Allocated on heap
+    return user
+}
+
+// Object pooling
+var userPool = sync.Pool{
+    New: func() interface{} {
+        return &User{}
+    },
+}
+```
+- Explicit pointers vs hidden references
+- Stack vs heap allocation
+- Garbage collector behavior
+- Memory leak prevention
+- Performance optimization
+- Object pooling
+- 10 practice questions
+
 ## Technical Insights
 
 ### Go vs Node.js Key Differences
@@ -63,10 +169,10 @@ if err != nil {
 - **Validation**: go-playground/validator
 
 ## Current Status
-- ✅ Foundation lessons created
-- ⏳ Waiting for user to complete exercises
-- 📋 4 more lessons planned: Structs/Methods, Interfaces, Goroutines/Channels, Pointers/Memory
-- 🎯 Final goal: DDD REST API with PostgreSQL
+- ✅ Foundation lessons created (6 lessons total)
+- ✅ All core Go concepts covered: Variables, Functions, Structs, Interfaces, Goroutines, Pointers
+- ⏳ User can now practice with comprehensive exercises (8-10 questions per lesson)
+- 🎯 Ready to build DDD REST API with PostgreSQL
 
 ## Code Samples Focus
 
@@ -102,8 +208,21 @@ func validateAge(age int) (bool, string) {
 }
 ```
 
+## Lesson Statistics
+- **Total Lessons**: 6 comprehensive modules
+- **Total Practice Questions**: 47 questions across all difficulty levels
+- **Estimated Study Time**: 20-25 hours for complete mastery
+- **Question Breakdown**:
+  - Basic level: 15 questions
+  - Intermediate level: 20 questions
+  - Advanced level: 12 questions
+
 ## Next Session Goals
-1. Review user's lesson answers
-2. Create advanced Go concepts (structs, interfaces, goroutines)
-3. Progress toward DDD project architecture
-4. Start REST API implementation planning
+1. Review user's practice answers for any lesson
+2. Build a complete DDD REST API project with:
+   - Clean Architecture layers
+   - PostgreSQL with GORM
+   - JWT authentication
+   - Dependency injection
+   - Unit and integration tests
+3. Deploy to production environment
