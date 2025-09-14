@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func main() {
+func variables() {
 	// Q1: Variable Declaration
 	// Method 1 (var with type):
 	var name1 string = "Alice"

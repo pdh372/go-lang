@@ -174,7 +174,10 @@ var userPool = sync.Pool{
 - ✅ **Lesson 1 Homework Completed**: Variables and Types (`homework/1.variables.go`)
   - Perfect scores on all 5 questions
   - Mastered variable declarations, type conversion, arrays vs slices
-- ⏳ Remaining homework: Functions → Structs → Interfaces → Goroutines → Pointers
+- ✅ **Lesson 2 Homework Completed**: Functions and Error Handling (`homework/2.functions.go`)
+  - Perfect scores on all 6 questions (60/60 - 100%)
+  - Mastered function syntax, multiple returns, error handling, named returns, variadic functions
+- ⏳ Remaining homework: Structs → Interfaces → Goroutines → Pointers
 - 🎯 Ready to build DDD REST API with PostgreSQL after homework completion
 
 ## Code Samples Focus
